@@ -1,21 +1,21 @@
 import streamlit as st
+st.set_page_config(layout="wide")
+
 import pandas as pd
 import pickle
 import os
 from PIL import Image
 
-st.set_page_config(layout="wide")
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 model_path = os.path.join(BASE_DIR, "..", "Model", "linear_model.pkl")
 features_path = os.path.join(BASE_DIR, "..", "Model", "feature_columns.pkl")
 
-# ===== LOAD MODEL =====
 with open(model_path, "rb") as f:
     model = pickle.load(f)
 
-# ===== LOAD FEATURE COLUMNS =====
 with open(features_path, "rb") as f:
     feature_columns = pickle.load(f)
 # ================= USER INPUT FUNCTION =================
