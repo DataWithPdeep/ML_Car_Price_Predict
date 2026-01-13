@@ -67,9 +67,10 @@ def get_user_input():
     }
 
 # ================= MAIN IMAGE & TITLE =================
-image_banner = Image.open(r'E:\ML_Pro\MLCar_price_Predict\Images\Pic 2.PNG')
-st.image(image_banner, use_container_width=True)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.join(BASE_DIR, "..", "Images", "Pic 2.PNG")
 
+image_banner = Image.open(image_path)
 st.markdown(
     "<h1 style='text-align: center;'>Vehicle Price Prediction App</h1>",
     unsafe_allow_html=True
