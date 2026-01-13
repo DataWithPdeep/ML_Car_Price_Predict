@@ -1,17 +1,17 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
 from PIL import Image
 
 st.set_page_config(layout="wide")
 
 # ===== LOAD MODEL =====
-with open(r'E:\ML_Pro\MLCar_price_Predict\Model\linear_model.pkl', 'rb') as f:
-    model = pickle.load(f)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "..", "Model", "linear_model.pkl")
 
-# ===== LOAD FEATURE COLUMNS =====
-with open(r'E:\ML_Pro\MLCar_price_Predict\Model\feature_columns.pkl', 'rb') as f:
-    feature_columns = pickle.load(f)
+with open(model_path, "rb") as f:
+    model = pickle.load(f)
 
 # ================= USER INPUT FUNCTION =================
 def get_user_input():
@@ -88,16 +88,16 @@ with right_col:
 
 # ================= PREDICTION =================
 if st.button("Predict"):
-    # 1️⃣ DataFrame banao
+    #  DataFrame banao
     input_df = pd.DataFrame([user_data])
 
-    # 2️⃣ One-hot encoding
+    #  One-hot encoding
     input_df = pd.get_dummies(input_df)
 
-    # 3️⃣ 🔥 TRAINING FEATURES SE MATCH KARO
+    #  TRAINING FEATURES SE MATCH KARO
     input_df = input_df.reindex(columns=feature_columns, fill_value=0)
 
-    # 4️⃣ Prediction
+    # Prediction
     prediction = model.predict(input_df)
 
     st.subheader("Predicted Price")
