@@ -19,6 +19,15 @@ with open(model_path, "rb") as f:
 with open(features_path, "rb") as f:
     feature_columns = pickle.load(f)
 # ================= USER INPUT FUNCTION =================
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+sidebar_image_path = os.path.join(BASE_DIR, "..", "Images", "Pic 1.png")
+image_sidebar = Image.open(sidebar_image_path)
+
+st.sidebar.image(image_sidebar, use_container_width=True)
+st.sidebar.header("Vehicle Features")
+
 def get_user_input():
     horsepower = st.sidebar.number_input('Horsepower (No)', 0, 1000, 300)
     torque = st.sidebar.number_input('Torque (No)', 0, 1500, 400)
