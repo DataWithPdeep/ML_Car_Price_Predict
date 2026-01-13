@@ -22,9 +22,11 @@ with open(features_path, "rb") as f:
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-sidebar_image_path = os.path.join(BASE_DIR, "..", "Images", "Pic 1.png")
-image_sidebar = Image.open(sidebar_image_path)
+images_dir = os.path.join(BASE_DIR, "..", "Images")
+sidebar_image_path = os.path.join(images_dir, "Pic 1.PNG")
 
+st.sidebar.write("Images found:", os.listdir(images_dir))
+image_sidebar = Image.open(sidebar_image_path)
 st.sidebar.image(image_sidebar, use_container_width=True)
 st.sidebar.header("Vehicle Features")
 
