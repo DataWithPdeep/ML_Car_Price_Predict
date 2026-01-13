@@ -76,11 +76,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 image_path = os.path.join(BASE_DIR, "..", "Images", "Pic 2.PNG")
 
 image_banner = Image.open(image_path)
+
+st.image(image_banner, use_container_width=True)
+
 st.markdown(
     "<h1 style='text-align: center;'>Vehicle Price Prediction App</h1>",
     unsafe_allow_html=True
 )
-
 left_col, right_col = st.columns(2)
 
 with left_col:
